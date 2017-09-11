@@ -1,0 +1,16 @@
+Intro :
+Multitache donne l'illusion de simultanéité.
+Définition du processus
+
+
+* Structure Interne:
+  - table (ps -ef)
+  - régions /proc
+  - type utilisateur / systeme
+
+* Ordonnancement
+  - RR multifile
+  - Changement de contexte
+  - priorité, nice renice
+
+* Cycle de vie.
