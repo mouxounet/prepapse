@@ -1,0 +1,64 @@
+====== Définition ======
+
+c'est une instance de programme en cours d'exécution
+(On peut rajouter qu'il est représenté en mémoire par le code, le data,
+la pile)
+
+code = instructions
+data = variables
+pile = éxécute les fonctions + contient le contexte (sauvegarde des registres)
+
+====== Création ======
+
+Le processus père fait un appel système (fork) pour créer une copie de lui même.
+Après le fork, le père et le fils partagent le même code. Un PID est créé pour
+le fils.
+
+Tous les processus sont gérés par la table des processus.
+
+Après cela, l'appel exec charge le code du fils. Il devient prêt à être éxécuté.
+
+La table des processus contient :
+- PID
+- PPID
+- Etat (sleep, runing, stopped T, zombie Z)
+- UID / GID
+- Repertoire et racine courants
+- Pointeurs vers des tables (fichiers, regions)
+- Champs d'erreurs et code retour appel système
+- Signaux
+- Paramètres d'ordonnancement + compteur de temps.
+
+====== Ordonnancement ======
+
+l'interractivité forte oblige à faire du multitâche.
+deux types de processus => noyau (ou pseudo temps réel => vidéo) | utilisateurs
+
+Ordonnancement en tourniquet à files multiples.
+Il y a 140 files de 0 à 139. Le scheduler regarde toujours a partir de 0.
+Le quantum de temps associé à chaque processus est variable (le scheduler lui
+même est en SCHED FIFO => il doit finir de s'éxécuter).
+De la même manière, le niveau de priorité pour un processus commence à 120 et
+peut varier :
+- beaucoup de calcul le niveau monte
+- beaucoup d'entrées sorties : le niveau descend.
+
+====== Cycle de vie ======
+
+voir schéma
+
+Création => Prêt à être exécuté
+En cours d'exécution quand élu (bascule entre le mode utilisateur et noyau).
+Deux types d'arrêt :
+- Préempté : fin du quantum, processus plus prioritaire, à la demande du
+  processus
+- Endormi : appel systeme sleep. En attente d'une entrée sortie. demande à
+  un controleur de disque par exemple.
+
+Quand il se termine => appel système exit, devient zombie en attendant que
+le père reçoive le code retour et le détruit.
+Un zombie est présent dans la table des processus, mais pas en mémoire.
+
+Après que chaque processus s'arrête, il y a changement de contexte:
+- sauvegarde des registres dans la pile
+- chargement du nouveau contexte.
