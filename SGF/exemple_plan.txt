@@ -1,0 +1,9 @@
+
+1 : structure interne
+  - super bloc
+  - table des inodes
+  - comprendre ou sont les données
+2 : implémentations
+  - différents SGF  / VFS
+  - description de FHS
+  - Description des fichiers.
