@@ -1,0 +1,105 @@
+====== Partie physique ======
+
+n'a rien à voir avec le SGF à proprement parler.
+
+RAID :
+  - 0 : striping
+  - 1 : mirorring
+  - 5 : Trois disques minimum. J'écris sur deux disques et bit de parité
+        sur le troisième pour retrouver le contenu perdu.
+
+Partitionnement :
+  Il s'agit d'un découpage. Il apporte de la sécurité (on peut positionner des
+  droits et des quotas). Permet de l'interropérabilité.
+  Mais on ne peut pas redimensionner.
+
+LVM :
+  Partionnement logique. Permet d'avoir un volume sur plusieurs disques.
+  PE = 4MO => PV disque => VG disque logique => LV partition.
+
+====== Définition du SGF ======
+
+C'est une structure organisée pour l'accès en lecture et en écriture des
+périphériques de type blocs.
+
+Permet d'accéder aux données via les métadonnées (droits, dates, propriétaires).
+
+====== Structure interne ======
+
+Bloc de boot qui contient la table des partitions.
+
+Superbloc :
+  - Nom du système de fichiers.
+  - taille du bloc de données
+  - Nombre de blocs libres
+  - Table tête de liste des blocs libres
+  - Taille de la table des inodes
+  - Nombre d'inodes libres
+  - Table numéro inodes libres
+  - Etat = à contrôler ou pas
+
+Table des inodes :
+  - UID
+  - GID
+  - Type
+  - Droits
+  - Dates
+  - Nombres de liens
+  - Table des blocs
+  - taille du fichier
+
+!!! C'est le répertoire qui connait le nom du fichier.
+
+====== Blocs de données ======
+
+13 emplacements:
+- les dix premiers pointes vers un bloc avec les données.
+- le 11 => simple indirection
+- le 12 => double indirection
+- le 13 => triple indirection
+
+Le bloc de données est accessible uniquement par le numéro d'inode.
+
+====== Types de système de fichiers ======
+
+XFS, système de fichiers de Red Hat.
+forte scalabilité.
+Fait pour les petits fichiers.
+Quotas sur groupe, utilisateurs, mais aussi sur répertoires.
+
+Ext 2 obsolète, remplacé par Ext 3 qui ajoute de la journalisation (utile en cas
+de crash).
+Ext 4 => plus gros volumes.
+
+Btrfs => redimensionnement à chaud, volumes multiples, RAID.
+
+====== Gestion multiple ======
+
+Le noyau intègre VFS (Virtual file system) :
+Lien entre la fonction appelée et le SGF.
+
+====== FHS ======
+
+Filesystem Hierarchy Standard
+définit l'arborescence principale et son contenu :
+  - boot : noyau, grub, init
+  - dev : RAM périphériques
+  - etc : editable text configuration
+  - home : personnel utilisateur
+  - mnt : points de montage
+  - proc : RAM processus
+  - root : perso root
+  - tmp : temporaire
+  - usr /bin /sbin binaires et super user binaries.
+
+====== Fichiers ======
+
+Ordinaire = -
+Répertoire = d
+Lien = l
+Spéciaux =
+  - b bloc
+  - c caractère
+IPC =
+  - s socket
+  - p tube
