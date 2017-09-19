@@ -1,0 +1,22 @@
+I) Définitions
+1) périphériques :
+  - Physique / Logique
+  - Bloc / caractère
+  - Plug and Play
+2) I/O
+  - Définition
+  - 4 sous systèmes
+  - BUS
+  - Interruption
+
+II)
+1) Initialisation
+  - noyau / modules / pilote détection de périphériques.
+  - /sysfs et /dev (major / mineur)
+  - Dmesg
+2) En cours d'exécution
+  - appel système
+  - VFS
+  - cache des pages
+  - ordonnancement
+  

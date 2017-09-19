@@ -1,0 +1,22 @@
+Définition :
+La virtualisation consiste à exécuter sur une machine hôte des systèmes d'exploitation.
+
+Avantages :
+- rationnalisation d'utilisation des ressources machines en diminuant les coûts de maintenance et la consommation électrique.
+- Falicite l'installation et le déploiement des machines et rend plus simple la mise en production des serveurs.
+- On peut changer à chaud les éléments de la machine comme le CPU, la mémoire, la taille des disques.
+
+
+Inconvénients :
+- risque liés au tout virtuel sur la gestion du parc.
+- Si la machine qui héberge est KO, toutes les VMs tombent => il faut prévoir de la haute dispo
+- Localisation des pannes plus complexes.
+
+Hyperviseur :
+Système d'exploitation léger qui permet de lancer des machines virtuelles (VM).
+
+Hyperviseur de type 2 :
+Ca passe par une application et destiné aux environnements de tests : pas de garanties de performance.
+
+Hyperviseur de type 1 :
+L'hyperviseur est en relation directe avec le matériel. Exemple KVM, VMWare
