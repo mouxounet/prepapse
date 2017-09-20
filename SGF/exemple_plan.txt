@@ -1,9 +1,56 @@
+Phrase d'accroche suivi de la définition du SGF:
+performances d'un serveur étroitement liées à l'accès aux périphériques de type bloc : nécessite
+l'optimisation de l'organisation et de l'enregistrement des fichiers sur disque.
+Annonce du plan :
+Nous vous présenterons en première partie la structure interne d'un SGF puis nous détaillerons la
+vue utilisateur et les commandes d'administration associées aux SGF.
 
-1 : structure interne
-  - super bloc
-  - table des inodes
-  - comprendre ou sont les données
-2 : implémentations
-  - différents SGF  / VFS
-  - description de FHS
-  - Description des fichiers.
+====== 1ère partie : structure interne
+* Création d'un SGF (mkfs)
+formatage d'une partition physique ou virtuelle
+Type de SGF (ext3, ext4, xfs et btrfs) selon /proc/filesystem
+VFS
+
+*Le superbloc (tune2fs, debugfs)
+le type
+l'état (fsck)
+la liste des blocs libres
+la listes des blocs défectueux
+...
+
+*La table des inodes (stat)
+l'inodex
+les types de fichier
+le propriétaire
+le groupe
+les droits
+les dates
+les adresses de bloc (simple/double et triple indirections)
+...
+
+*Les données : blocs contigus si possible
+
+====== 2ème partie : vue utilisateur et commandes d'administration
+
+Arborescence unique
+
+*Notion de répertoire (contient l'association nom <->inode)
+Tables système (descripetrus de fichier, fichiers ouverts, inodes )
+FHS (hiérarchie des sous répertoires de la racine)
+Montage de multiple partitions sur disque (mount) et de partition en mémoire (procfs, sysfs,
+tmpfs)
+/etc/fstab pour l'automatisation au démarrage
+/etc/mtab pour une vue dynamique
+
+*Administration
+blkid pour afficher les attributs d'un SF
+df pour le taux d'occupation en blocs ou inodes des SGF
+du pour l'espace occupé par un ou plusieurs fichiers
+
+
+======= Conclusion
+Synthèse
+Phrase d'ouverture :
+Supervision indispensable
+OU
+Solution haute disponibilité avec les surcouches RAID er LVM
