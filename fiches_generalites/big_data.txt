@@ -1,5 +1,5 @@
 ====== problématique :
-Gros volume de données qui poussent à trouver une alternative aux bases 
+Gros volume de données qui poussent à trouver une alternative aux bases
 de données relationnelles et aux méthodes d'analyse "classique"
 Exemple de Google / Facebook
 
@@ -21,3 +21,8 @@ et partage de ces données.
 
 ====== Les technologies
 * Base de données no-sql (orientées document, clef->valeur, colonne ou graphe).
+* Infrastuctures de serveurs.
+* Stockage des données en mémoire
+
+* framework Hadoop
+* Map reduce : Pour les données à traiter. Map fait un traitement sur chaque élément, reduc fournit un résultat.
