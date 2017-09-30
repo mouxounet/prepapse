@@ -1,0 +1,23 @@
+Définition :
+Logiciel distribué sous une licence libre.
+Peut être utilisé, modifié et redistribué sans restriction.
+
+Avantages :
+- Peu coûteux : même s'il y a des coûts, on s'affranchit des licences qui peuvent
+coûter très cher (on peut voir le prix augmenter le prix de manière conséquente)
+- amélioration en continu : les améliorations et les corrections de bugs sont
+faits en continu par une communauté d'utilisateurs. Il y a une plus grande
+réactivité.
+- On n'est pas limité dans l'utilisation. On peut l'installer sur autant de
+machines que l'on veut et l'adapter à ses besoins.
+-Interropérabilité. On n'est pas contraint à utiliser les solutions imposés par
+des logiciels propriétaires.
+
+Inconvénients :
+- Coûts cachés : il faut parfois faire appel à des prestataires pour maintenir
+ou déployer. Pas de support, pas de garanties.
+- Apprentissage parfois difficile. Ce n'est pas la priorité des développeurs
+de documenter leurs travaux.
+- Risque d'abandon : un projet peut être stoppé du jour au lendemain.
+- Sécurité : le fait que le code soit ouvert permet aux pirates de trouver des
+failles.
