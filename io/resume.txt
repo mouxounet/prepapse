@@ -1,0 +1,91 @@
+====== Linux et les sous systèmes 
+
+En intro par exemple :
+- Mémoire
+- processus
+- entrees sorties
+- SGF
+
+Utilisation exclusive ou partagée : IPC = Inter processus communication :
+- Mémoire partagée
+- Sémaphores
+- Messages (file de messages)
+
+Communication entre processus :
+- Signaux 
+- tubes anonymes et nommés (fichiers de type p)
+- sockets (fichiers de type s qui permettent de communiquer dans les deu sens contrairement au tube)
+
+====== La gestion des périphériques 
+
+Sous GNU/linux chaque périhérique est matérialisé par un fichier sous /dev et un fichier sous /sys
+
+Périphériques physiques :
+- Entrée : clavier / souris
+- Sortie : écran / imprimante
+- Entree Sortie : disques / bandes / interfaces réseau
+
+Périphériqes virtuels :
+- mémoire virtuelle : /dev/kmem
+- poubelle /dev/null
+- connexions réseau : /dev/pts/0
+
+Descripteurs de fichiers :
+fd comme file descriptor fd0 entree standard, fd1 sortie standard, fd 2 sortie erreur
+
+Les appels système : open, close, read, write
+
+Fichiers spéciaux :
+2 types :
+	- bloc : disques, cdrom
+	- caracteres : terminaux
+vision interne :
+	- N° majeur : désigne le périphériques (driver)
+	- N° minuer : désigne l'unité elle même (adresse logique)
+
+
+Sous Sys, on trouve /sys/block pour les périphériques de type bloc et /sys/class pour les périphériques de type caractère.
+
+====== Noyau GNU/Linux et entrées sorties
+
+Noyau 2.4 ajoute les plug & play
+
+Le Noyau 2.6 fait énormément d'ajouts concernant les entrées sorties.
+Il regroupe les fonctions communes pour les pilotes et périphériques.
+Cet ensemble est appelé LDM : Linux Device Model.
+
+LDM :
+- gestion de l'alimentation
+- gestion du mode sommeil (standby)
+- le "vrai" plug and play
+- le branchement à chaud.
+- la gestion par classe de périphériques.
+
+Les périphériques sont décrits sous /sys/
+/sys est comparable à /proc
+Udev permet l'analyse dynamique des périphériques.
+
+====== Le plug & play
+
+La commande dmesg permet de vérifier qu'un périphérique est bien reconnu par le système.
+
+avec LDM, udev parcourt /sys/class et crée les fichiers spéciaux dynamiquement sous /dev/
+
+c'est le script hotplug qui permet le plug and play et fait le nécessaire sous /dev et /sys
+
+====== La gestion des Entrées / Sorties 
+
+Définition : les entrées / sorties correspondent à la communication avec le noyau via les appels système et le 
+mécanisme des interruptions.
+Les entrées sorties sont effectuées de manière asynchrone.
+
+
+
+GNU/Linux a un noyau monolithique (fonctions intégrées dans le noyau) modulaire (modules chargés à la demande)
+
+Séquence d'entrée sortie :
+1) processus qui sollicite le device par un appel système
+2) noyau envoie une interruption vers le périphérique
+3) le noyau sollicite le device via son n°majeur
+4) le pointeur localise le driver adapté
+5) l'opération d'e/s est réalisée.
