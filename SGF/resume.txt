@@ -39,6 +39,7 @@ Superbloc :
   - Etat = à contrôler ou pas
 
 Table des inodes :
+une inode :
   - UID
   - GID
   - Type
