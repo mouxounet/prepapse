@@ -1,0 +1,11 @@
+====== Les organismes et acteurs 
+Le Secrétaire général de la défense et la sécurité nationale est au service du premier ministre.
+Il est en charge de la sécurité des systèmes d'information au niveau national.
+
+
+ANSI : Agence nationale de la sécurité des systèmes d'information.
+Elle produit des recommandations et des guides:
+	* La méthode EBIOS (Expression des besoins et identification des objectifs de securité )
+	* Le référentiel général de sécurité (RGS)
+
+Au niveau des ministère, c'est le haut fonctionnaire de la défense et la sécurité qui anime la politique de sécurité.
