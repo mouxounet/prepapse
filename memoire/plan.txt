@@ -1,0 +1,56 @@
+
+
+I Principe la pagination
+
+Mémoire virtuelle => espace d'adressage plus grand que la mémoire physique.
+Système de va et vient sur les disques.
+Mémoire virtuelle basée sur la pagination.
+
+Différents niveaux :
+L'esapce d'adressage est divisé en pages. Les pages sont soit sur les disques soit en mémoire virtuelle.
+Un grand nombre de pages entraine une augmentation de la table des pages.
+d'ou la pagination à plusieurs niveaux.
+
+adresse virtuelle :
+10 bits qui pointent vers une entrée du répertoire de pages.
+10 bits qui pointent vers une entrée de la table des pages.
+12 bits qui donnent l'index de la page.
+
+répertoire des pages :
+Il est propre au processus. Il permet de lui faire croire qu'il est le seul à utiliser la mémoire physique.
+Il contient 1024 entrées de 32 bits (22 bits pour l'adresse physique de la table des pages + 10 bits de controle.)
+Erreur de segmentation
+
+table des pages : 
+elle permet au processeur de connaitre la correspondance entre une adresse virtuelle et une adresse physique.
+Elle peut être sur plusieurs niveaux pour éviter d'occuper trop d'espace.
+1024 entrées de 32 bits.
+
+
+La pages :
+12 derniers bits de l'adresse virtuelle => déplacement dans la page.
+
+
+II Rôle de la MMU et du dérobeur de pages
+
+MMU : Memory Management Unit .
+permet de placer les processus en mémoire sans forcément palcer les pages dans les cadres de pages contigus.
+Adresse logiques => pages >< adresses physiques cadres de pages.
+Les programmes manipulent des adresses virtuelles.
+
+Dérobeur de pages :
+
+Page Fault => chargement d'une page en mémoire. Si pas de cadre disponible, il faut faire de la place.
+Pager = kswapd.
+Algorithmes :
+- LRU : moins récemment utilisée
+- Fifo
+- Lfu : moins souvent utilisée.
+
+Explication du swap
+
+III Les optimisations
+
+- Partage des régions avec COW = copy on write
+- translation lookaside buffer (TLB) = Mémoire associative de la MMU qui mémorise les translations d'adresse.
+- mappage avec mmap et munmap, projection en mémoire d'un fichier.
