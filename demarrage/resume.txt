@@ -1,0 +1,25 @@
+démarrage => appui bouton
+
+Bios (Basic Input Output System):
+	- Vérification du matériel (POST => Power on self test)
+	- Boot list : pour savoir si un périphérique est bootable, on regarde les 512 premiers Octets => MBR (master boot record)
+
+GRUB permet de charger le media, ajouter des options
+
+Il va chercher le noyau sous /boot (qui ne doit pas être en LVM) : vmlinuz (noyau) et lance initrd (système minimal => initramfs).
+
+lancement du processus 0 swapper
+
+init
+
+getty => login => bash
+
+init s'appuye sur inittab
+plusieurs runlevels 1 : single user
+3 multi-user + réseau
+5 interface graphique
+0 arrêt
+6 redémarrage
+
+/etc/rc.d : init.d contient les scripts d'initialisation
+ensuite rc1.d contient des liens symboliques vers init.d K pour arrêter et S pour démarrer. (chkconfig)
